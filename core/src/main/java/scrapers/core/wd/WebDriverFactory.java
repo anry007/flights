@@ -6,6 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 
+/**
+ * Factory for getting Web Driver instances
+ * @author Anry
+ *
+ */
 public class WebDriverFactory {
 	private final WebDriverPathProvider wdPathProvider;
 	

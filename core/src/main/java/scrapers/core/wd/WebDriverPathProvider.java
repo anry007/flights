@@ -1,11 +1,17 @@
 package scrapers.core.wd;
 
+/**
+ * Base class that provides platform specific path to Web Driver
+ * @author Anry
+ *
+ */
 public abstract class WebDriverPathProvider {
-	protected static final String BASE_PATH = "./src/main/resources/webDrivers/2.35/";
+	protected static final String BASE_PATH = "webDrivers/2.35/";
 	private static final String osName = System.getProperty("os.name").toLowerCase();;
 	
 	public String getWDPath() {
-		return BASE_PATH + getPathInternal();
+		final ClassLoader classLoader = getClass().getClassLoader();
+		return classLoader.getResource(BASE_PATH + getPathInternal()).getFile();
 	}
 
 	protected abstract String getPathInternal();
