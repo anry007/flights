@@ -3,6 +3,7 @@ package flights.page.objects;
 import java.util.List;
 import java.util.concurrent.Future;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -25,16 +26,24 @@ public abstract class FlightsHome {
 	 */
 	public void load(FlightsHome fromPage) {
 		fromPage.awaitUnload();
-		driver.get(url);
+		invokeUrl();
 		fromPage.waitUnload();
 		waitLoadComplete();
+	}
+
+	private void invokeUrl() {
+		try {
+			driver.get(url);
+		} catch (TimeoutException e) {
+			// we don't care because we managing loading ourselves
+		}
 	}
 	
 	/**
 	 * Loads the page
 	 */
 	public void load() {
-		driver.get(url);
+		invokeUrl();
 		waitLoadComplete();
 	}
 	
